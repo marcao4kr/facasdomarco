@@ -1,0 +1,524 @@
+/* Variáveis de Cores (Tema Forja/Dark) */
+:root {
+    --bg-principal: #121212;
+    --bg-sidebar: #0a0a0a;
+    --bg-card: #1e1e1e;
+    --laranja-forja: #ff6600;
+    --texto-claro: #f5f5f5;
+    --texto-mutado: #a0a0a0;
+    --entrada-bg: rgba(46, 125, 50, 0.2); 
+    --saida-bg: rgba(198, 40, 40, 0.2);  
+    --entrada-texto: #81c784;
+    --saida-texto: #e57373;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-principal);
+    color: var(--texto-claro);
+    display: flex;
+    height: 100vh;
+}
+
+/* Menu Lateral (Sidebar) */
+.sidebar {
+    width: 250px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-container {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+
+.logo-texto {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px var(--laranja-forja), 0 0 15px var(--laranja-forja);
+    margin: 0;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #222;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu li:hover, .menu li.ativo {
+    background-color: #222;
+    border-left: 4px solid var(--laranja-forja);
+    color: var(--laranja-forja);
+}
+
+/* Área Principal */
+.conteudo-principal {
+    flex: 1;
+    padding: 20px 40px;
+    overflow-y: auto;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.btn-laranja {
+    background-color: var(--laranja-forja);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-laranja:hover {
+    background-color: #e65c00;
+    box-shadow: 0 0 10px var(--laranja-forja);
+}
+
+/* Tabela de Dados */
+.tabela-container {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    color: var(--texto-mutado);
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+tr.entrada { background-color: var(--entrada-bg); }
+tr.entrada td.tipo { color: var(--entrada-texto); font-weight: bold; }
+tr.saida { background-color: var(--saida-bg); }
+tr.saida td.tipo { color: var(--saida-texto); font-weight: bold; }
+tr:hover { filter: brightness(1.2); }
+
+/* Estilos do Modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro transparente */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-conteudo {
+    background-color: var(--bg-card);
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    padding: 20px 30px;
+}
+
+.modal-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-cabecalho h2 { margin: 0; font-size: 20px; }
+
+.fechar-modal {
+    color: var(--texto-mutado);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.fechar-modal:hover { color: var(--laranja-forja); }
+
+/* Formulário */
+.grupo-input {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.linha-inputs {
+    display: flex;
+    gap: 15px;
+}
+.linha-inputs .grupo-input { flex: 1; }
+
+.grupo-input label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--texto-mutado);
+}
+
+.grupo-input input, .grupo-input select {
+    background-color: var(--bg-principal);
+    border: 1px solid #444;
+    color: var(--texto-claro);
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.grupo-input input:focus, .grupo-input select:focus {
+    outline: none;
+    border-color: var(--laranja-forja);
+}
+
+.modal-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancelar {
+    background-color: transparent;
+    color: var(--texto-claro);
+    border: 1px solid #555;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    /* Adicionamos essas duas linhas abaixo: */
+    font-size: 14px;
+    font-weight: bold; 
+}
+.btn-cancelar:hover { 
+    background-color: #333; 
+}
+
+.btn-laranja {
+    background-color: var(--laranja-forja);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    /* Adicionamos essa linha abaixo: */
+    font-size: 14px; 
+}
+.btn-laranja:hover { 
+    background-color: #e65c00;
+    box-shadow: 0 0 10px var(--laranja-forja);
+}
+
+/* Botão de Excluir da Tabela */
+.btn-excluir {
+    background-color: transparent;
+    color: var(--saida-texto); 
+    border: 1px solid var(--saida-texto);
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.btn-excluir:hover {
+    background-color: var(--saida-texto);
+    color: #fff;
+}
+
+/* Cards de Resumo (Visão Geral) */
+.cards-resumo {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1; /* Faz os 3 cards terem a mesma largura */
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.card h3 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: var(--texto-mutado);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card p {
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.texto-verde { color: var(--entrada-texto); }
+.texto-vermelho { color: var(--saida-texto); }
+.texto-laranja { 
+    color: var(--laranja-forja); 
+    text-shadow: 0 0 10px rgba(255, 102, 0, 0.4);
+}
+
+/* Dá um destaque extra pro card de Saldo */
+.card.destaque {
+    border-color: var(--laranja-forja);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.15);
+}
+
+/* Barra de Pesquisa no Topo */
+.controles-topo {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.input-pesquisa {
+    background-color: var(--bg-card);
+    border: 1px solid #444;
+    color: var(--texto-claro);
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 250px;
+    transition: 0.3s;
+}
+
+.input-pesquisa:focus {
+    outline: none;
+    border-color: var(--laranja-forja);
+    box-shadow: 0 0 8px rgba(255, 102, 0, 0.3);
+}
+
+/* Estilo do botão de menu (escondido no PC) */
+.btn-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--laranja-forja);
+    font-size: 28px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+/* --- REGRAS PARA CELULAR (Telas menores que 768px) --- */
+@media (max-width: 768px) {
+    /* Mostra o botão de menu */
+    .btn-menu {
+        display: block;
+    }
+
+    /* Esconde o menu lateral jogando ele para fora da tela e deixa flutuante */
+    .sidebar {
+        position: fixed;
+        height: 100%;
+        z-index: 1000;
+        left: -250px; /* Escondido na esquerda */
+        transition: 0.3s ease-in-out;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    }
+
+    /* Classe que o JavaScript vai usar para puxar o menu de volta */
+    .sidebar.ativa {
+        left: 0; 
+    }
+
+    /* Arruma o cabeçalho e a barra de pesquisa para caberem na tela */
+    .cabecalho {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .controles-topo {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .input-pesquisa, .btn-laranja {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Empilha os 3 cards de resumo um embaixo do outro */
+    .cards-resumo {
+        flex-direction: column;
+    }
+
+    /* PERMITE ROLAR A TABELA PARA O LADO COM O DEDO SEM QUEBRAR O SITE */
+    .tabela-container {
+        overflow-x: auto;
+    }
+}
+
+/* --- FORÇANDO A COR DO MENU LATERAL --- */
+a.item-menu {
+    color: #cccccc !important; /* Força a cor cinza clara */
+    text-decoration: none !important; /* Arranca o sublinhado à força */
+    display: block;
+    transition: 0.3s;
+}
+
+/* Quando passar o mouse ou quando o botão estiver ativo */
+a.item-menu:hover, 
+a.item-menu.ativo {
+    color: #ff6600 !important; /* Força o laranja da marca */
+}
+
+/* --- ESTILOS DA TELA DE VENDAS (PDV) --- */
+.pdv-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start; /* Impede que o lado direito estique até o pé da página */
+}
+
+.pdv-esq {
+    flex: 2; /* O carrinho ocupa 2/3 da tela no PC */
+    display: flex;
+    flex-direction: column;
+}
+
+.pdv-controles {
+    display: flex;
+    gap: 15px;
+    background-color: var(--bg-card);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.pdv-dir {
+    flex: 1; /* O resumo ocupa 1/3 da tela no PC */
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.pdv-totais {
+    background-color: #111;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 15px;
+    border: 1px solid #444;
+}
+
+.linha-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Responsividade: Se for celular, empilha tudo um embaixo do outro */
+@media (max-width: 768px) {
+    .pdv-container, .pdv-controles {
+        flex-direction: column;
+    }
+    .pdv-esq, .pdv-dir {
+        width: 100%;
+    }
+}
+
+/* ========================================== */
+/* --- MENU RESPONSIVO (CELULAR) --- */
+/* ========================================== */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px; /* Esconde o menu fora da tela */
+        height: 100vh;
+        z-index: 1000; /* Garante que o menu fique por cima de tudo */
+        transition: left 0.3s ease; /* Efeito suave de deslizamento */
+        box-shadow: 2px 0 15px rgba(0,0,0,0.8);
+    }
+    
+    /* A classe mágica que o botão ativa */
+    .sidebar.ativa {
+        left: 0; /* Traz o menu de volta pra tela */
+    }
+}
+
+/* ========================================== */
+/* --- TELA DE LOGIN E SEGURANÇA --- */
+/* ========================================== */
+#telaLogin {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100vh;
+    background-color: #0f0f11; /* Fundo preto/cinza escuro SÓLIDO para esconder o sistema */
+    z-index: 9999; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caixa-login {
+    background-color: #1a1a1c; /* Cinza um pouquinho mais claro para destacar a caixa */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Garante que os campos de digitar não fiquem espremidos */
+.caixa-login input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.caixa-login h1 {
+    color: var(--laranja-marca);
+    margin-bottom: 5px;
+    font-size: 24px;
+}

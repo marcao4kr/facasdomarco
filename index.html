@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facas do Marco - Painel de Estoque</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+<div id="telaLogin">
+        <div class="caixa-login">
+            <h1>FACAS DO MARCO</h1>
+            <p style="color: var(--texto-claro); margin-bottom: 25px; font-size: 14px;">Acesso Restrito ao Sistema</p>
+            
+            <div class="grupo-input" style="text-align: left; margin-bottom: 15px;">
+                <label>Usuário</label>
+                <input type="text" id="inputUsuario" placeholder="Digite seu acesso">
+            </div>
+            
+            <div class="grupo-input" style="text-align: left; margin-bottom: 25px;">
+                <label>Senha</label>
+                <input type="password" id="inputSenha" placeholder="••••••••">
+            </div>
+            
+            <button class="btn-laranja" id="btnEntrarLogin" style="width: 100%; height: 45px; font-size: 16px; font-weight: bold;">
+                Entrar no Sistema
+            </button>
+            
+            <p id="msgErroLogin" style="color: #ff4d4d; margin-top: 15px; font-size: 14px; display: none;">
+                Usuário ou senha incorretos!
+            </p>
+        </div>
+    </div>
+    <aside class="sidebar">
+        <div class="logo-container">
+            <h2 class="logo-texto">FACAS DO MARCO</h2>
+        </div>
+      <ul class="menu">
+            <li><a href="#" class="item-menu" data-alvo="telaVisaoGeral">Visão Geral</a></li>
+            <li><a href="#" class="item-menu" data-alvo="telaClientes">Clientes</a></li> 
+            <li><a href="#" class="item-menu ativo" data-alvo="telaProdutos">Produtos (Catálogo)</a></li>
+            <li><a href="#" class="item-menu" data-alvo="telaVendas">Frente de Caixa (Vendas)</a></li>
+        </ul>
+    </aside>
+
+    <main class="conteudo-principal">
+
+      <div id="telaProdutos" class="tela-sistema">
+            
+            <header class="cabecalho">
+                <div style="display: flex; align-items: center;">
+                    <button id="btnMenu" class="btn-menu">☰</button>
+                    <h1>Catálogo de Produtos</h1> 
+                </div>
+                <div class="controles-topo">
+                    <input type="text" id="inputPesquisa" class="input-pesquisa" placeholder="Buscar faca ou descrição...">
+                    <button class="btn-laranja" id="btnNovoProduto">+ Novo Produto</button>
+                </div>
+            </header>
+
+            <div class="cards-resumo">
+                <div class="card">
+                    <h3>Total de Modelos</h3>
+                    <p id="totalModelos" style="color: var(--texto-claro);">0</p>
+                </div>
+                <div class="card">
+                    <h3>Itens Físicos no Estoque</h3>
+                    <p id="totalItens" class="texto-verde">0</p>
+                </div>
+                <div class="card destaque">
+                    <h3>Capital em Estoque</h3>
+                    <p id="valorEstoque" class="texto-laranja">R$ 0,00</p>
+                </div>
+            </div>
+
+            <section class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cód</th>
+                            <th>Produto</th>
+                            <th>Categoria</th>
+                            <th>Descrição</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabela">
+                        </tbody>
+                </table>
+            </section>
+
+        </div> <div id="telaVisaoGeral" class="tela-sistema" style="display: none;">
+            <header class="cabecalho">
+                <div style="display: flex; align-items: center;">
+                    <button class="btn-menu">☰</button>
+                    <h1>Visão Geral do Negócio</h1>
+                </div>
+            </header>
+
+            <div class="cards-resumo" style="margin: 20px;">
+                <div class="card destaque">
+                    <h3>Faturamento Total</h3>
+                    <p id="dashFaturamento" class="texto-laranja">R$ 0,00</p>
+                </div>
+                <div class="card">
+                    <h3>Vendas Realizadas</h3>
+                    <p id="dashQtdVendas" class="texto-verde">0</p>
+                </div>
+            </div>
+
+            <section class="tabela-container" style="margin: 0 20px;">
+                <h3 style="color: var(--texto-claro); margin-bottom: 15px;">Últimas Vendas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nº da Venda</th>
+                            <th>Data e Hora</th>
+                            <th>Valor Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaDashboard">
+                        <tr><td colspan="3" style="text-align:center;">Carregando dados...</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+<div id="telaClientes" class="tela-sistema" style="display: none;">
+            
+            <header class="cabecalho">
+                <div style="display: flex; align-items: center;">
+                    <button class="btn-menu">☰</button>
+                    <h1>Gestão de Clientes</h1>
+                </div>
+            </header>
+
+            <div class="pdv-controles" style="margin: 20px; display: flex; gap: 15px; flex-wrap: wrap;">
+                <div class="grupo-input" style="flex: 2; min-width: 200px;">
+                    <label>Nome Completo</label>
+                    <input type="text" id="inputNomeCliente" placeholder="Ex: João da Silva">
+                </div>
+                <div class="grupo-input" style="flex: 1; min-width: 150px;">
+                    <label>WhatsApp / Telefone</label>
+                    <input type="text" id="inputTelefoneCliente" placeholder="(00) 00000-0000">
+                </div>
+                <div class="grupo-input" style="flex: 1; min-width: 200px;">
+                    <label>E-mail (Opcional)</label>
+                    <input type="email" id="inputEmailCliente" placeholder="joao@email.com">
+                </div>
+                <div style="display: flex; align-items: flex-end;">
+                    <button class="btn-laranja" id="btnSalvarCliente" style="height: 40px; margin-bottom: 5px;">+ Salvar Cliente</button>
+                </div>
+            </div>
+
+            <section class="tabela-container" style="margin: 0 20px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cód</th>
+                            <th>Nome do Cliente</th>
+                            <th>WhatsApp</th>
+                            <th>E-mail</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaClientes">
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 20px; color: var(--texto-mutado);">
+                                Carregando lista de clientes...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
+        <div id="telaVendas" class="tela-sistema" style="display: none;">
+            
+            <header class="cabecalho">
+                <div style="display: flex; align-items: center;">
+                    <button class="btn-menu">☰</button>
+                    <h1>Frente de Caixa (PDV)</h1>
+                </div>
+            </header>
+
+            <div class="pdv-container">
+                <div class="pdv-esq">
+                    <div class="pdv-controles">
+                        <div class="grupo-input" style="flex: 3;">
+                            <label>Selecionar Produto</label>
+                            <select id="pdvProduto">
+                                <option value="">Carregando catálogo...</option>
+                                </select>
+                        </div>
+                        <div class="grupo-input" style="flex: 1;">
+                            <label>Qtd.</label>
+                            <input type="number" id="pdvQuantidade" value="1" min="1">
+                        </div>
+                        <div style="display: flex; align-items: flex-end;">
+                            <button class="btn-laranja" id="btnAdicionarCarrinho" style="height: 40px; margin-bottom: 5px;">Adicionar</button>
+                        </div>
+                    </div>
+
+                    <section class="tabela-container" style="margin-top: 20px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Qtd</th>
+                                    <th>Preço Un.</th>
+                                    <th>Subtotal</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="corpoTabelaCarrinho">
+                                <tr>
+                                    <td colspan="5" style="text-align: center; color: var(--texto-mutado); padding: 30px;">
+                                        O carrinho está vazio. Adicione produtos acima.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="pdv-dir">
+                    <h3 style="margin-bottom: 10px;">Resumo da Venda</h3>
+                    <hr style="border-color: #333; margin-bottom: 20px;">
+                    
+                    <div class="grupo-input">
+                        <label>Nome do Cliente (Opcional)</label>
+                    <select id="pdvCliente" style="width: 100%; padding: 10px; background-color: var(--fundo); color: var(--entrada-texto); border: 1px solid var(--borda); border-radius: 4px;">
+                        <option value="null">Cliente Padrão (Sem cadastro)</option>
+                    </select>
+                    </div>
+
+                    <div class="pdv-totais">
+                        <div class="linha-total">
+                            <span style="color: var(--texto-claro);">Total a Pagar:</span>
+                            <span id="pdvTotal" class="texto-laranja" style="font-size: 28px; font-weight: bold;">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-laranja" id="btnFinalizarVenda" style="width: 100%; padding: 15px; font-size: 16px; margin-top: 20px; background-color: #28a745; border-color: #28a745;">💸 Finalizar Venda</button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+</section>
+    </main>
+<div id="modalProduto" class="modal">
+        <div class="modal-conteudo">
+            <div class="modal-cabecalho">
+                <h2>Cadastrar Novo Produto</h2>
+                <span class="fechar-modal">&times;</span>
+            </div>
+            <form id="formProduto">
+                <div class="grupo-input">
+                    <label>Nome do Produto</label>
+                    <input type="text" id="inputNome" required placeholder="Ex: Faca Rambo Sobrevivência...">
+                </div>
+                <div class="grupo-input">
+                    <label>Categoria</label>
+                    <select id="inputCategoria" required>
+                        <option value="1">Facas Artesanais</option>
+                        <option value="2">Facas Industriais</option>
+                        <option value="3">Acessórios</option>
+                    </select>
+                </div>
+                <div class="linha-inputs">
+                    <div class="grupo-input">
+                        <label>Preço de Venda (R$)</label>
+                        <input type="number" id="inputPreco" required min="0" step="0.01" placeholder="Ex: 150.00">
+                    </div>
+                    <div class="grupo-input">
+                        <label>Estoque Inicial</label>
+                        <input type="number" id="inputQuantidade" required min="0" value="1">
+                    </div>
+                </div>
+                <div class="grupo-input">
+                    <label>Descrição Detalhada</label>
+                    <input type="text" id="inputDescricao" placeholder="Ex: Lâmina de 20cm, acompanha bainha" required>
+                </div>
+                <div class="modal-acoes">
+                    <button type="button" class="btn-cancelar fechar-modal">Cancelar</button>
+                    <button type="submit" class="btn-laranja">Salvar Produto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
+</body>
+</html>
